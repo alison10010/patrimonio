@@ -1,52 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-p,tr,h2,h3,h4{
-    font-family: sans-serif;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-}
+@extends('relatorio.modeloRelatorio')  {{-- USA O LAYOUT PADRÃO --}}
 
-th, td {
-  text-align: left;
-  padding: 8px;
-}
+@section('content') {{-- CONTEUDO DA PAGE - INICIO --}}
 
-tr:nth-child(even){background-color: #f2f2f2}
-</style>
-</head>
-<body>
-
-
-<div style="overflow-x:auto;">
-
-  <center><img  class="navbar-brand" src="./img/brasao_acre.svg" style="width: 10%"></center>
-  <h4>Relatório de Patrimônio - SEASDHM</h4>
+<div class="head">
+    <p style="font-size: 12px"><b>Relatório de Patrimônio - SEASDHM</b></p>
+    <p style="font-size: 12px">
+        @php
+            echo date('d/m/Y H:i');
+        @endphp
+    </p>
+  </div>
 
     <table>
         <tr>
-            <th scope="col" style="width: 15%">Tipo</th>
-            <th scope="col" style="width: 21%">N° Patrimônio</th>
-            <th scope="col">Descrição</th>
-            <th scope="col">Setor Atual</th>
-            <th scope="col"><center>Dat. cadastrado</center></th>
-            <th scope="col"><center>Ult. movimento</center></th>
+            <th scope="col" class="texto" style="width: 15%">Tipo</th>
+            <th scope="col" class="texto" style="width: 21%">N° Patrimônio</th>
+            <th scope="col" class="texto">Descrição</th>
+            <th scope="col" class="texto">Setor Atual</th>
+            <th scope="col" class="texto"><center>Dat. cadastrado</center></th>
+            <th scope="col" class="texto"><center>Ult. movimento</center></th>
         </tr>
 
         @foreach ($listPatrimonio as $patrimonio)
         <tr>                        
-            <td>{{ $patrimonio->tipo_patrimonio }}</td>
-            <td>{{ $patrimonio->num_patrimonio }}</td>
-            <td>{{ $patrimonio->descricao }}</td>
-            <td>{{ $patrimonio->setor_atual }}</td>
-            <td><center>{{ date('d-m-y H:i', strtotime($patrimonio->date_adicionado)) }}</center></td>
-            <td><center>{{ date('d-m-y H:i', strtotime($patrimonio->updated_at)) }}</center></td>
+            <td class="texto">{{ $patrimonio->tipo_patrimonio }}</td>
+            <td class="texto">{{ $patrimonio->num_patrimonio }}</td>
+            <td class="texto">{{ $patrimonio->descricao }}</td>
+            <td class="texto">{{ $patrimonio->setor_atual }}</td>
+            <td class="texto"><center>{{ date('d-m-y H:i', strtotime($patrimonio->date_adicionado)) }}</center></td>
+            <td class="texto"><center>{{ date('d-m-y H:i', strtotime($patrimonio->updated_at)) }}</center></td>
         </tr>
         @endforeach
 
@@ -57,5 +39,4 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 </div>
 
-</body>
-</html>
+@endsection  {{-- CONTEUDO DA PAGE - FIM --}}

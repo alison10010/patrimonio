@@ -30,17 +30,22 @@ class RelatorioController extends Controller
     // GERA RELATORIO EM PDF
     public function geraRelatorio(RelatorioRepository $model) 
     {
-        $listPatrimonio = $model->relatorioPatrimonio();   
-        $pdf = PDF::loadView('relatorio.relatorioPDF', compact('listPatrimonio'));
-        return  $pdf->setPaper('a4', 'landscape')->stream('Relatorio_Patrimonio.pdf');        
+        $listPatrimonio = $model->relatorioPatrimonio();
+        return view('relatorio.relatorioPDF', ['listPatrimonio' => $listPatrimonio]);
+        
+        // $listPatrimonio = $model->relatorioPatrimonio();   
+        // $pdf = PDF::loadView('relatorio.relatorioPDF', compact('listPatrimonio'));
+        // return  $pdf->setPaper('a4', 'landscape')->stream('Relatorio_Patrimonio.pdf');                
     }
 
     // GERA RELATORIO EM PDF DAS MOVIMENTACOES
     public function geraRelatorioMovimentacao(RelatorioRepository $model) 
     {
-        $listMovimentacao = $model->relatorioMovimentacao();   
-        $pdf = PDF::loadView('relatorio.relatorioPDFMovimentacao', compact('listMovimentacao'));
-        return  $pdf->setPaper('a4', 'landscape')->stream('Relatorio_Movimentacao.pdf');        
+        $listMovimentacao = $model->relatorioMovimentacao();  
+        return view('relatorio.relatorioPDFMovimentacao', ['listMovimentacao' => $listMovimentacao]);
+
+        // $pdf = PDF::loadView('relatorio.relatorioPDFMovimentacao', compact('listMovimentacao'));
+        // return  $pdf->setPaper('a4', 'landscape')->stream('Relatorio_Movimentacao.pdf');                    
     }
 
 } 
